@@ -20,3 +20,19 @@ class Solution(object):
 # PERFORMANCE
 # Runtime 2150 ms (Beats 41.05% of users with Python)
 # Memory 12.48 MB (Beats 94.09% of users with Python)
+
+# PERFECT SOLUTION
+# class Solution(object):
+    # def twoSum(self, nums, target):
+    #     """
+    #     :type nums: List[int]
+    #     :type target: int
+    #     :rtype: List[int]
+    #     """
+    #     tried = {}
+    #     for i, num in enumerate(nums):
+    #         j = target - num
+    #         if j in tried:
+    #             return [i, tried[j]]
+    #         tried[num] = i
+    #     return []
