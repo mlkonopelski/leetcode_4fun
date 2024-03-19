@@ -51,6 +51,34 @@ class Solution:
 # Runtime 51 ms (Beats 35.98% of users with Python)
 # Memory 16.61 MB (Beats 28.65% of users with Python)
 
+# BEST USER SOLUTION
+# NOTES: In general best solutions took the largest possible int like 1000 and tries to substruct it
+# from the number if possible. E.g. 2989:
+# 1) try to - 1000
+# 2) try to - 1000
+# 3) try to - 1000 no so try to - 900 
+# etc 
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        num_map = {
+            1: 'I',
+            5: 'V',    4: 'IV',
+            10: 'X',   9: 'IX',
+            50: 'L',   40: 'XL',
+            100: 'C',  90: 'XC',
+            500: 'D',  400: 'CD',
+            1000: 'M', 900: 'CM',
+        }
+
+        roman = ''
+
+        for n in [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]:
+            while n <= num:
+                roman += num_map[n]
+                num -= n
+    
+        return roman
+        
 
 if __name__ == '__main__':
 
