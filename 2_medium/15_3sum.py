@@ -63,11 +63,49 @@ class Solution:
         return result
 
 
+# BEST USER SOLUTION
+# https://leetcode.com/problems/3sum/solutions/725950/python-5-easy-steps-beats-97-4-annotated/
+from itertools import combinations
 
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+        res = set()
+
+        # 1. Split nums into three lists: negative numbers, positive numbers, and zeros
+        n, p, z = [], [], []
+        for num in nums:
+            if num == 0:
+                z.append(num)
+            elif num > 0:
+                p.append(num)
+            else:
+                n.append(num)
+        
+        # 2. Create sets for p and n for O(1) lookup
+        N, P = set(n), set(p)
+
+        # 4. If there is 0 search for opposite numbers:
+        if z:
+            for num in P:
+                if -1*num in N:
+                    res.add((-1*num, 0, num))
+            # 3. If there are 3 zeros add to reults
+            if len(z) >= 3:
+                res.add((0, 0, 0))
+        
+        # 5. for all pairs in negative side check if there is solution in positive side
+        for s in [n, p]:
+            for x, y in combinations(s, 2):
+                target = -1 * (x+y)
+                if target in P:
+                    res.add(tuple(sorted([x, y, target])))
+
+        return [list(r) for r in res]
 
 
 if __name__ == '__main__':
     
-    assert Solution().threeSum([-1,0,1,2,-1,-4]) == [[-1, -1, 2], [-1, 0, 1]]
+    assert Solution().threeSum([-1,0,1,2,-1,-4]) == [[-1, 0, 1], [-1, -1, 2]]
     assert Solution().threeSum([0,1,1]) == []
     assert Solution().threeSum([0,0,0]) == [[0,0,0]]
