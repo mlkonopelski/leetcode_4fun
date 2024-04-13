@@ -49,6 +49,34 @@ class Solution:
 # Runtime 202 ms (Beats 8.92% of users with Python)
 # Memory 18.90 MB (Beats 7.45% of users with Python)
 
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        
+        s = list(s)
+        table = [[] for _ in range(numRows)]
+
+
+        # POPULATE THIS TABLE
+        col_input = True # if diagonal false
+        while s:
+            if col_input:
+                for i in range(min(numRows, len(s))):
+                    table[i].append(s.pop(0))
+                col_input = False
+            else:
+                for i in range(min(numRows-2, len(s))):
+                    table[numRows-i-1-1].append(s.pop(0))
+                col_input = True
+
+        # RETURN STRING FROM ROWS
+        r_s = ''.join([''.join(row) for row in table])
+        
+        return r_s
+    
+# PERFORMANCE
+# Runtime 61 ms (Beats 24.62% of users with Python)
+# Memory 16.80 MB (Beats 21.53% of users with Python)
+
 
 if __name__ == '__main__':
 
