@@ -15,6 +15,8 @@ class Solution:
                     if match < best_match:
                         best_match = match
                         best_result = r
+                    elif match == target:
+                        return match
 
         return best_result
 
@@ -83,7 +85,7 @@ class Solution:
 
 if __name__ == '__main__':
 
-    # assert Solution().threeSumClosest([-1,2,1,-4], 1) == 2
-    # assert Solution().threeSumClosest([0,0,0],  1) == 0
-    # assert Solution().threeSumClosest([1,1,1,0], -100) == 2
+    assert Solution().threeSumClosest([-1,2,1,-4], 1) == 2
+    assert Solution().threeSumClosest([0,0,0],  1) == 0
+    assert Solution().threeSumClosest([1,1,1,0], -100) == 2
     assert Solution().threeSumClosest([4,0,5,-5,3,3,0,-4,-5], -2) == -2
